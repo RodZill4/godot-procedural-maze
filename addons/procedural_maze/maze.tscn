@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/procedural_maze/maze.gd" type="Script" id=1]
+
+
+
+
+[node name="Maze" type="StaticBody"]
+
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+friction = 1.0
+bounce = 0.0
+constant_linear_velocity = Vector3( 0, 0, 0 )
+constant_angular_velocity = Vector3( 0, 0, 0 )
+script = ExtResource( 1 )
+size_x = 5
+size_y = 5
+width = 4.0
+wall_width = 0.1
+height = 2.6
+random_seed = 0
+
+

@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://test_procedural_maze/player.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleMesh" id=1]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+radius = 0.3
+mid_height = 1.0
+radial_segments = 16
+rings = 8
+
+[sub_resource type="CubeMesh" id=2]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+size = Vector3( 0.2, 0.2, 0.2 )
+subdivide_width = 0
+subdivide_height = 0
+subdivide_depth = 0
+
+[sub_resource type="CapsuleShape" id=3]
+
+radius = 0.29108
+height = 1.08465
+
+[node name="Player" type="KinematicBody" index="0"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 6, 11 )
+input_ray_pickable = false
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+axis_lock_linear_x = false
+axis_lock_linear_y = false
+axis_lock_linear_z = false
+axis_lock_angular_x = false
+axis_lock_angular_y = false
+axis_lock_angular_z = false
+collision/safe_margin = 0.01
+script = ExtResource( 1 )
+_sections_unfolded = [ "Axis Lock", "Collision", "Transform", "collision" ]
+
+[node name="MeshInstance" type="MeshInstance" parent="." index="0"]
+
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 1 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="MeshInstance" type="MeshInstance" parent="MeshInstance" index="0"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.333065, -0.519758 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 2 )
+skeleton = NodePath("..")
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="1"]
+
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 0, 0 )
+shape = SubResource( 3 )
+disabled = false
+
+[node name="OmniLight" type="OmniLight" parent="." index="2"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+layers = 1
+light_color = Color( 1, 1, 1, 1 )
+light_energy = 1.0
+light_indirect_energy = 1.0
+light_negative = false
+light_specular = 0.5
+light_bake_mode = 1
+light_cull_mask = -1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_bias = 0.15
+shadow_contact = 0.0
+shadow_reverse_cull_face = false
+editor_only = false
+omni_range = 10.5871
+omni_attenuation = 1.0
+omni_shadow_mode = 1
+omni_shadow_detail = 1
+
+

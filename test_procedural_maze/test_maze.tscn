@@ -1,0 +1,124 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://addons/procedural_maze/maze.tscn" type="PackedScene" id=1]
+[ext_resource path="res://test_procedural_maze/textures/wall.tres" type="Material" id=2]
+[ext_resource path="res://test_procedural_maze/textures/floor.tres" type="Material" id=3]
+[ext_resource path="res://test_procedural_maze/textures/ceiling.tres" type="Material" id=4]
+[ext_resource path="res://test_procedural_maze/loot1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://test_procedural_maze/loot3.tscn" type="PackedScene" id=6]
+[ext_resource path="res://test_procedural_maze/camera.tscn" type="PackedScene" id=7]
+[ext_resource path="res://test_procedural_maze/player.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Environment" id=1]
+
+background_mode = 0
+background_sky_custom_fov = 0.0
+background_color = Color( 0, 0, 0, 1 )
+background_energy = 1.0
+background_canvas_max_layer = 0
+ambient_light_color = Color( 0.0664063, 0.0664063, 0.0664063, 1 )
+ambient_light_energy = 1.0
+ambient_light_sky_contribution = 1.0
+fog_enabled = false
+fog_color = Color( 0.5, 0.6, 0.7, 1 )
+fog_sun_color = Color( 1, 0.9, 0.7, 1 )
+fog_sun_amount = 0.0
+fog_depth_enabled = true
+fog_depth_begin = 10.0
+fog_depth_curve = 1.0
+fog_transmit_enabled = false
+fog_transmit_curve = 1.0
+fog_height_enabled = false
+fog_height_min = 0.0
+fog_height_max = 100.0
+fog_height_curve = 1.0
+tonemap_mode = 0
+tonemap_exposure = 1.0
+tonemap_white = 1.0
+auto_exposure_enabled = false
+auto_exposure_scale = 0.4
+auto_exposure_min_luma = 0.05
+auto_exposure_max_luma = 8.0
+auto_exposure_speed = 0.5
+ss_reflections_enabled = false
+ss_reflections_max_steps = 64
+ss_reflections_fade_in = 0.15
+ss_reflections_fade_out = 2.0
+ss_reflections_depth_tolerance = 0.2
+ss_reflections_roughness = true
+ssao_enabled = false
+ssao_radius = 1.0
+ssao_intensity = 1.0
+ssao_radius2 = 0.0
+ssao_intensity2 = 1.0
+ssao_bias = 0.01
+ssao_light_affect = 0.0
+ssao_color = Color( 0, 0, 0, 1 )
+ssao_quality = 0
+ssao_blur = 3
+ssao_edge_sharpness = 4.0
+dof_blur_far_enabled = false
+dof_blur_far_distance = 10.0
+dof_blur_far_transition = 5.0
+dof_blur_far_amount = 0.1
+dof_blur_far_quality = 1
+dof_blur_near_enabled = false
+dof_blur_near_distance = 2.0
+dof_blur_near_transition = 1.0
+dof_blur_near_amount = 0.1
+dof_blur_near_quality = 1
+glow_enabled = false
+glow_levels/1 = false
+glow_levels/2 = false
+glow_levels/3 = true
+glow_levels/4 = false
+glow_levels/5 = true
+glow_levels/6 = false
+glow_levels/7 = false
+glow_intensity = 0.8
+glow_strength = 1.0
+glow_bloom = 0.0
+glow_blend_mode = 2
+glow_hdr_threshold = 1.0
+glow_hdr_scale = 2.0
+glow_bicubic_upscale = false
+adjustment_enabled = false
+adjustment_brightness = 1.0
+adjustment_contrast = 1.0
+adjustment_saturation = 1.0
+_sections_unfolded = [ "Glow" ]
+
+[node name="Scene" type="Spatial"]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="Maze" parent="." index="0" instance=ExtResource( 1 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.200729, 0 )
+size_x = 8
+size_y = 8
+corridor_width = 5.0
+wall_width = 0.5
+height = 3.0
+random_seed = 1
+wall_material = ExtResource( 2 )
+floor_material = ExtResource( 3 )
+ceiling_material = ExtResource( 4 )
+loot1 = ExtResource( 5 )
+loot2 = null
+loot3 = ExtResource( 6 )
+light = null
+key = null
+door = null
+
+[node name="Camera" parent="." index="1" instance=ExtResource( 7 )]
+
+transform = Transform( 0.0694848, 0.282483, -0.956753, 0, 0.959071, 0.283167, 0.997583, -0.0196758, 0.0666408, -15.1327, 2.14388, -0.0829811 )
+environment = SubResource( 1 )
+far = 20.0
+
+[node name="Player" parent="." index="2" instance=ExtResource( 8 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0561452, 1.19975, -0.122772 )
+
+
