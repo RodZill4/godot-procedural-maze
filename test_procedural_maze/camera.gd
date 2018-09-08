@@ -1,6 +1,6 @@
 extends Camera
 
-var align = 4
+export(float) var align = 0
 
 func _ready():
 	# Called when the node is added to the scene for the first time.

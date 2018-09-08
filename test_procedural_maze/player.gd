@@ -1,5 +1,7 @@
 extends KinematicBody
 
+export(float) var run_speed = 10.0
+
 var motion = Vector3(0, 0, 0)
 
 func _ready():
@@ -9,19 +11,19 @@ func _physics_process(delta):
 	motion.y += -9.8*delta
 	move_and_slide(motion, Vector3(0, 1, 0))
 	var direction = Vector2(0, 0)
-	direction.y += 10*Input.get_joy_axis(0, 0)
-	direction.x -= 10*Input.get_joy_axis(0, 1)
+	direction.y += run_speed*Input.get_joy_axis(0, 0)
+	direction.x -= run_speed*Input.get_joy_axis(0, 1)
 	if Input.is_action_pressed("ui_up"):
-		direction.x += 10.0
+		direction.x += run_speed
 	if Input.is_action_pressed("ui_down"):
-		direction.x -= 10.0
+		direction.x -= run_speed
 	if Input.is_action_pressed("ui_left"):
-		direction.y -= 10.0
+		direction.y -= run_speed
 	if Input.is_action_pressed("ui_right"):
-		direction.y += 10.0
-	if direction.length() > 10:
+		direction.y += run_speed
+	if direction.length() > run_speed:
 		direction /= direction.length()
-		direction *= 10
+		direction *= run_speed
 	var camera = get_node("../Camera")
 	if camera != null:
 		direction = direction.rotated(-0.5*PI - camera.rotation.y)
@@ -35,6 +37,9 @@ func _physics_process(delta):
 	h_motion.x = lerp(h_motion.x, direction.x, h_motion_influence)
 	h_motion.y = lerp(h_motion.y, direction.y, h_motion_influence)
 	if h_motion.length() > 1:
+		$Model.anim("Run")
 		rotation.y = 0.5*PI - h_motion.angle()
+	else:
+		$Model.anim("Idle")
 	motion.x = h_motion.x
 	motion.z = h_motion.y

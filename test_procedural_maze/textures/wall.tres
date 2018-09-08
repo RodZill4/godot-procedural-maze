@@ -4,8 +4,6 @@
 [ext_resource path="res://test_procedural_maze/textures/walls_mrao.png" type="Texture" id=2]
 [ext_resource path="res://test_procedural_maze/textures/walls_normal_map.png" type="Texture" id=3]
 
-
-
 [resource]
 
 render_priority = 0
@@ -22,7 +20,7 @@ vertex_color_is_srgb = false
 params_diffuse_mode = 0
 params_specular_mode = 0
 params_blend_mode = 0
-params_cull_mode = 2
+params_cull_mode = 0
 params_depth_draw_mode = 0
 params_line_width = 1.0
 params_point_size = 1.0

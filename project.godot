@@ -10,7 +10,7 @@ config_version=3
 
 [application]
 
-config/name="Nouveau projet de jeu"
+config/name="Procedural Maze"
 run/main_scene="res://test_procedural_maze/test_maze.tscn"
 config/icon="res://icon.png"
 
