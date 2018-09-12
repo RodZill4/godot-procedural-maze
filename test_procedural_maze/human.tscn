@@ -1543,7 +1543,7 @@ surfaces/0 = {
 }
 _sections_unfolded = [ "surface_1" ]
 
-[node name="Scene Root" type="Spatial" index="0"]
+[node name="Scene Root" type="Spatial"]
 
 script = ExtResource( 1 )
 

@@ -1,8 +1,8 @@
 [gd_resource type="SpatialMaterial" load_steps=4 format=2]
 
-[ext_resource path="res://test_procedural_maze/textures/floor_albedo.png" type="Texture" id=1]
-[ext_resource path="res://test_procedural_maze/textures/floor_mrao.png" type="Texture" id=2]
-[ext_resource path="res://test_procedural_maze/textures/floor_normal_map.png" type="Texture" id=3]
+[ext_resource path="res://test_procedural_maze/textures/walls_albedo.png" type="Texture" id=1]
+[ext_resource path="res://test_procedural_maze/textures/walls_mrao.png" type="Texture" id=2]
+[ext_resource path="res://test_procedural_maze/textures/walls_normal_map.png" type="Texture" id=3]
 
 [resource]
 
@@ -63,5 +63,4 @@ uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
 distance_fade_enable = false
-_sections_unfolded = [ "Albedo", "Ambient Occlusion", "Metallic", "NormalMap", "Roughness", "UV1" ]
 

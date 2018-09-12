@@ -14,6 +14,10 @@ config/name="Procedural Maze"
 run/main_scene="res://test_procedural_maze/test_maze.tscn"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "material_maker" )
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

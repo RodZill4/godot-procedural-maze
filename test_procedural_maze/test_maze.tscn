@@ -11,13 +11,13 @@
 
 [sub_resource type="BoxShape" id=1]
 
-extents = Vector3( 6.5605, 1, 6.60362 )
+extents = Vector3( 6.5605, 1, 6.45898 )
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=2]
 
 extents = Vector3( 1.34623, 1, 1.30101 )
 
-[sub_resource type="Environment" id=2]
+[sub_resource type="Environment" id=3]
 
 background_mode = 0
 background_sky_custom_fov = 0.0
@@ -96,7 +96,7 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Glow" ]
 
-[node name="Scene" type="Spatial"]
+[node name="Scene" type="Spatial" index="0"]
 
 _sections_unfolded = [ "Transform" ]
 
@@ -121,6 +121,8 @@ door = null
 
 [node name="Config" type="Spatial" parent="Maze" index="0"]
 
+_sections_unfolded = [ "Transform" ]
+
 [node name="open_1" type="CollisionShape" parent="Maze/Config" index="0"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.1936, 0.596782, 19.8235 )
@@ -129,21 +131,20 @@ disabled = false
 
 [node name="open_2" type="CollisionShape" parent="Maze/Config" index="1"]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.1803, 0.596782, 24.7743 )
-shape = SubResource( 3 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.1803, 0.596782, 24.8818 )
+shape = SubResource( 2 )
 disabled = false
 
 [node name="open_3" type="CollisionShape" parent="Maze/Config" index="2"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39805, 1.12636, -0.298095 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 disabled = false
 
 [node name="Camera" parent="." index="1" instance=ExtResource( 7 )]
 
 transform = Transform( 0.0689583, 0.398187, -0.914709, -0.00853784, 0.917094, 0.398581, 0.997583, -0.0196758, 0.0666408, -15.1327, 1.7468, -0.0829811 )
-environment = SubResource( 2 )
-far = 20.0
+environment = SubResource( 3 )
 align = 0
 
 [node name="Player" parent="." index="2" instance=ExtResource( 8 )]
