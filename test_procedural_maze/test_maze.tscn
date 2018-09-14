@@ -116,8 +116,8 @@ _sections_unfolded = [ "Transform" ]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.200729, 0 )
 script = ExtResource( 2 )
-size_x = 80
-size_y = 80
+size_x = 9
+size_y = 9
 corridor_width = 5.0
 wall_width = 0.5
 height = 3.0
@@ -125,12 +125,6 @@ random_seed = 1
 wall_material = ExtResource( 3 )
 floor_material = ExtResource( 4 )
 ceiling_material = ExtResource( 4 )
-loot1 = null
-loot2 = null
-loot3 = null
-light = null
-key = null
-door = null
 wall_models = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
 
 [node name="Config" type="Spatial" parent="Maze" index="0"]

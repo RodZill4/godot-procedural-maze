@@ -11,17 +11,6 @@ export(Material) var wall_material
 export(Material) var floor_material
 export(Material) var ceiling_material
 
-export(PackedScene) var loot1
-export(PackedScene) var loot2
-export(PackedScene) var loot3
-
-export(PackedScene) var light
-
-export(PackedScene) var key
-export(PackedScene) var door
-
-var cells = []
-
 const MazeGenerator = preload("res://addons/procedural_maze/maze_generator.gd")
 
 const DIRECTIONS = [ { x=-1, y=0, r=1 }, { x=0, y=-1, r=0 }, { x=1, y=0, r=1 }, { x=0, y=1, r=0 } ]

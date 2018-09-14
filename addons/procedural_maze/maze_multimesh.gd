@@ -7,19 +7,32 @@ class MultiMeshBuilder:
 	var mesh
 	var instances = []
 	
+	static func sort(a, b):
+		if a.position < b.position:
+			return true
+		return false
+	
 	func _init(m):
 		mesh = m
 	
 	func add(position, rotation):
 		instances.append({ position=position, rotation=rotation })
 	
-	func finalize(parent):
+	func finalize(parent, remove_duplicates = false):
 		var multi_mesh = MultiMesh.new()
+		if remove_duplicates:
+			instances.sort_custom(self, "sort")
+			var new_instances = []
+			var last = null
+			for i in instances:
+				if last != i.position:
+					new_instances.append(i)
+				last = i.position
+			instances = new_instances
 		multi_mesh.mesh = mesh
 		multi_mesh.color_format = MultiMesh.COLOR_NONE
 		multi_mesh.transform_format = MultiMesh.TRANSFORM_3D
 		multi_mesh.instance_count = instances.size()
-		print(str(multi_mesh.instance_count)+" instances")
 		for i in range(instances.size()):
 			var instance = instances[i]
 			var basis = Basis().rotated(Vector3(0, 1, 0), instance.rotation)
@@ -34,7 +47,6 @@ func generate_walls_mesh(generator, builder):
 	var inner_walls = []
 	var pillars = MultiMeshBuilder.new(load("res://test_procedural_maze/models/pillar.tres"))
 	for m in wall_models:
-		print(m)
 		inner_walls.append(MultiMeshBuilder.new(m))
 	for i in range(0, generator.walls_x.size(), 3):
 		var y = generator.walls_x[i]
@@ -56,4 +68,4 @@ func generate_walls_mesh(generator, builder):
 		pillars.add(corridor_width*(Vector3(x-0.5, 0, y2+0.5)), 0)
 	for i in inner_walls:
 		i.finalize(self)
-	pillars.finalize(self)
+	pillars.finalize(self, true)
