@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/procedural_maze/maze.tscn" type="PackedScene" id=1]
-[ext_resource path="res://test_procedural_maze/textures/wall.tres" type="Material" id=2]
-[ext_resource path="res://test_procedural_maze/textures/floor.tres" type="Material" id=3]
-[ext_resource path="res://test_procedural_maze/textures/ceiling.tres" type="Material" id=4]
-[ext_resource path="res://test_procedural_maze/loot1.tscn" type="PackedScene" id=5]
-[ext_resource path="res://test_procedural_maze/loot3.tscn" type="PackedScene" id=6]
-[ext_resource path="res://test_procedural_maze/camera.tscn" type="PackedScene" id=7]
-[ext_resource path="res://test_procedural_maze/player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/procedural_maze/maze_multimesh.gd" type="Script" id=2]
+[ext_resource path="res://test_procedural_maze/textures/walls.tres" type="Material" id=3]
+[ext_resource path="res://test_procedural_maze/textures/floor.tres" type="Material" id=4]
+[ext_resource path="res://test_procedural_maze/models/wall1.tres" type="ArrayMesh" id=5]
+[ext_resource path="res://test_procedural_maze/models/wall2.tres" type="ArrayMesh" id=6]
+[ext_resource path="res://test_procedural_maze/models/wall3.tres" type="ArrayMesh" id=7]
+[ext_resource path="res://test_procedural_maze/camera.tscn" type="PackedScene" id=8]
+[ext_resource path="res://test_procedural_maze/player.tscn" type="PackedScene" id=9]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -96,6 +97,17 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Glow" ]
 
+[sub_resource type="GDScript" id=4]
+
+script/source = "extends Label
+
+func _ready():
+	pass
+
+func _process(delta):
+	text = str(Performance.get_monitor(Performance.TIME_FPS))
+"
+
 [node name="Scene" type="Spatial" index="0"]
 
 _sections_unfolded = [ "Transform" ]
@@ -103,21 +115,22 @@ _sections_unfolded = [ "Transform" ]
 [node name="Maze" parent="." index="0" instance=ExtResource( 1 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.200729, 0 )
+script = ExtResource( 2 )
 size_x = 9
 size_y = 9
 corridor_width = 5.0
 wall_width = 0.5
 height = 3.0
-random_seed = 1
-wall_material = ExtResource( 2 )
-floor_material = ExtResource( 3 )
+wall_material = ExtResource( 3 )
+floor_material = ExtResource( 4 )
 ceiling_material = ExtResource( 4 )
-loot1 = ExtResource( 5 )
+loot1 = null
 loot2 = null
-loot3 = ExtResource( 6 )
+loot3 = null
 light = null
 key = null
 door = null
+wall_models = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
 
 [node name="Config" type="Spatial" parent="Maze" index="0"]
 
@@ -141,15 +154,34 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39805, 1.12636, -0.298095 )
 shape = SubResource( 2 )
 disabled = false
 
-[node name="Camera" parent="." index="1" instance=ExtResource( 7 )]
+[node name="Camera" parent="." index="1" instance=ExtResource( 8 )]
 
-transform = Transform( 0.0689583, 0.398187, -0.914709, -0.00853784, 0.917094, 0.398581, 0.997583, -0.0196758, 0.0666408, -15.1327, 1.7468, -0.0829811 )
+transform = Transform( 0.0689583, 0.398187, -0.914709, -0.00853784, 0.917094, 0.398581, 0.997583, -0.0196758, 0.0666408, -5.16841, 1.7468, -0.0829811 )
 environment = SubResource( 3 )
 align = 0
 
-[node name="Player" parent="." index="2" instance=ExtResource( 8 )]
+[node name="Player" parent="." index="2" instance=ExtResource( 9 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0561452, 0.230989, -0.122772 )
 run_speed = 5.0
+
+[node name="FpsMeter" type="Label" parent="." index="3"]
+
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_left = -40.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = SubResource( 4 )
 
 
