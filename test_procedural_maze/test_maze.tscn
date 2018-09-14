@@ -116,11 +116,12 @@ _sections_unfolded = [ "Transform" ]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.200729, 0 )
 script = ExtResource( 2 )
-size_x = 9
-size_y = 9
+size_x = 80
+size_y = 80
 corridor_width = 5.0
 wall_width = 0.5
 height = 3.0
+random_seed = 1
 wall_material = ExtResource( 3 )
 floor_material = ExtResource( 4 )
 ceiling_material = ExtResource( 4 )
@@ -144,13 +145,13 @@ disabled = false
 
 [node name="open_2" type="CollisionShape" parent="Maze/Config" index="1"]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.1803, 0.596782, 24.8818 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.8189, 1.00316, 24.8818 )
 shape = SubResource( 2 )
 disabled = false
 
 [node name="open_3" type="CollisionShape" parent="Maze/Config" index="2"]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39805, 1.12636, -0.298095 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.66856, 1.12636, -0.298095 )
 shape = SubResource( 2 )
 disabled = false
 
