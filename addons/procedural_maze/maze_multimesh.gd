@@ -2,6 +2,7 @@ tool
 extends "res://addons/procedural_maze/maze.gd"
 
 export(Array) var wall_models = []
+export(Array) var outer_wall_models = []
 
 class MultiMeshBuilder:
 	var mesh
@@ -43,29 +44,53 @@ class MultiMeshBuilder:
 
 func generate_walls_mesh(generator, builder):
 	# Create multi_mesh
-	var outer_walls = []
 	var inner_walls = []
+	var outer_walls = []
 	var pillars = MultiMeshBuilder.new(load("res://test_procedural_maze/models/pillar.tres"))
 	for m in wall_models:
 		inner_walls.append(MultiMeshBuilder.new(m))
+	for m in outer_wall_models:
+		outer_walls.append(MultiMeshBuilder.new(m))
+	if inner_walls.empty():
+		return
 	for i in range(0, generator.walls_x.size(), 3):
 		var y = generator.walls_x[i]
 		var x1 = generator.walls_x[i+1]
 		var x2 = generator.walls_x[i+2]
 		for x in range(x1, x2+1):
-			var model = randi()%inner_walls.size()
-			inner_walls[model].add(corridor_width*(Vector3(x, 0, y-0.5)), 0)
-		pillars.add(corridor_width*(Vector3(x1-0.5, 0, y-0.5)), 0)
-		pillars.add(corridor_width*(Vector3(x2+0.5, 0, y-0.5)), 0)
+			var rnd = randi()
+			var model = rnd%inner_walls.size()
+			if y == 0:
+				outer_walls[model].add(corridor_width*(Vector3(x, 0, y-0.5)), PI)
+			elif y == size_y:
+				outer_walls[model].add(corridor_width*(Vector3(x, 0, y-0.5)), 0)
+			else:
+				inner_walls[model].add(corridor_width*(Vector3(x, 0, y-0.5)), ((rnd >> 8)&1)*PI)
+		if y > 0 and y < size_y-1:
+			if x1 > 0:
+				pillars.add(corridor_width*(Vector3(x1-0.5, 0, y-0.5)), 0)
+			if x2 < size_x-1:
+				pillars.add(corridor_width*(Vector3(x2+0.5, 0, y-0.5)), 0)
 	for i in range(0, generator.walls_y.size(), 3):
 		var x = generator.walls_y[i]
 		var y1 = generator.walls_y[i+1]
 		var y2 = generator.walls_y[i+2]
 		for y in range(y1, y2+1):
-			var model = randi()%inner_walls.size()
-			inner_walls[model].add(corridor_width*(Vector3(x-0.5, 0, y)), 0.5*PI)
-		pillars.add(corridor_width*(Vector3(x-0.5, 0, y1-0.5)), 0)
-		pillars.add(corridor_width*(Vector3(x-0.5, 0, y2+0.5)), 0)
+			var rnd = randi()
+			var model = rnd%inner_walls.size()
+			if x == 0:
+				outer_walls[model].add(corridor_width*(Vector3(x-0.5, 0, y)), -0.5*PI)
+			elif x == size_x:
+				outer_walls[model].add(corridor_width*(Vector3(x-0.5, 0, y)), 0.5*PI)
+			else:
+				inner_walls[model].add(corridor_width*(Vector3(x-0.5, 0, y)), (0.5+((rnd >> 8)&1))*PI)
+		if x > 0 and x < size_x:
+			if y1 > 0:
+				pillars.add(corridor_width*(Vector3(x-0.5, 0, y1-0.5)), 0)
+			if y2 < size_y-1:
+				pillars.add(corridor_width*(Vector3(x-0.5, 0, y2+0.5)), 0)
 	for i in inner_walls:
+		i.finalize(self)
+	for i in outer_walls:
 		i.finalize(self)
 	pillars.finalize(self, true)

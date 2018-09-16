@@ -1,7 +1,8 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://test_procedural_maze/human.gd" type="Script" id=1]
-[ext_resource path="res://test_procedural_maze/textures/ClothedLightSkin1.png" type="Texture" id=2]
+[ext_resource path="res://test_procedural_maze/models/materials/ClothedLightSkin1.png" type="Texture" id=2]
+
 
 [sub_resource type="Animation" id=1]
 

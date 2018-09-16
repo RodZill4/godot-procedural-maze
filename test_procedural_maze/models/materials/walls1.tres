@@ -1,8 +1,8 @@
 [gd_resource type="SpatialMaterial" load_steps=4 format=2]
 
-[ext_resource path="res://test_procedural_maze/textures/walls_albedo.png" type="Texture" id=1]
-[ext_resource path="res://test_procedural_maze/textures/walls_mrao.png" type="Texture" id=2]
-[ext_resource path="res://test_procedural_maze/textures/walls_normal_map.png" type="Texture" id=3]
+[ext_resource path="res://test_procedural_maze/models/materials/walls1_albedo.png" type="Texture" id=1]
+[ext_resource path="res://test_procedural_maze/models/materials/walls1_mrao.png" type="Texture" id=2]
+[ext_resource path="res://test_procedural_maze/models/materials/walls1_normal_map.png" type="Texture" id=3]
 
 [resource]
 
