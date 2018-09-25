@@ -3,7 +3,6 @@
 [ext_resource path="res://test_procedural_maze/models/materials/wood_albedo.png" type="Texture" id=1]
 [ext_resource path="res://test_procedural_maze/models/materials/wood_normal_map.png" type="Texture" id=2]
 
-
 [sub_resource type="SpatialMaterial" id=1]
 
 render_priority = 0
@@ -320,7 +319,10 @@ tracks/2/keys = {
 "values": [ Vector3( 0, 0, 0.170452 ), Vector3( 0, 0, 0.170452 ), Vector3( 0, 0, -67.6221 ) ]
 }
 
-[node name="Spatial" type="Spatial" index="0"]
+[node name="Spatial" type="Spatial"]
+
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Chest" type="MeshInstance" parent="." index="0"]
 
@@ -357,7 +359,7 @@ material/0 = null
 
 [node name="Lid" type="MeshInstance" parent="Chest" index="1"]
 
-transform = Transform( 0.999996, -0.00297494, 0, 0.00297494, 0.999996, 0, 0, 0, 1, 0.210059, 0.341484, 0 )
+transform = Transform( 0.999996, -0.00297495, 0, 0.00297495, 0.999996, 0, 0, 0, 1, 0.210059, 0.341484, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1

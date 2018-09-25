@@ -13,13 +13,6 @@ export(Material) var ceiling_material
 
 const MazeGenerator = preload("res://addons/procedural_maze/maze_generator.gd")
 
-const DIRECTIONS = [ { x=-1, y=0, r=1 }, { x=0, y=-1, r=0 }, { x=1, y=0, r=1 }, { x=0, y=1, r=0 } ]
-const DIRECTION_LEFT  = 0
-const DIRECTION_UP    = 1
-const DIRECTION_RIGHT = 2
-const DIRECTION_DOWN  = 3
-const MASK_VISITED    = 16
-
 func _ready():
 	generate()
 
@@ -62,7 +55,7 @@ func generate():
 					var rect = Rect2(Vector2(corner1.x, corner1.z)/corridor_width, Vector2(corner2.x-corner1.x, corner2.z-corner1.z)/corridor_width)
 					generator.open(rect)
 	var time = OS.get_unix_time()
-	generator.generate(random_seed)
+	var objects = generator.generate(random_seed)
 	generator.generate_walls()
 	print("Generated maze in %d seconds" % (OS.get_unix_time() - time))
 	time = OS.get_unix_time()
@@ -71,6 +64,10 @@ func generate():
 	time = OS.get_unix_time()
 	generate_meshes(generator)
 	print("Generated meshes in %d seconds" % (OS.get_unix_time() - time))
+	instanciate_objects(objects)
+
+func instanciate_objects(objects):
+	pass
 
 func generate_walls(generator, builder):
 	for i in range(0, generator.walls_x.size(), 3):

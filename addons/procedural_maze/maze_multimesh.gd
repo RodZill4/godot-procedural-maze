@@ -51,6 +51,8 @@ func generate_walls_mesh(generator, builder):
 		inner_walls.append(MultiMeshBuilder.new(m))
 	for m in outer_wall_models:
 		outer_walls.append(MultiMeshBuilder.new(m))
+	if outer_walls.empty():
+		outer_walls = inner_walls
 	if inner_walls.empty():
 		return
 	for i in range(0, generator.walls_x.size(), 3):
@@ -59,14 +61,13 @@ func generate_walls_mesh(generator, builder):
 		var x2 = generator.walls_x[i+2]
 		for x in range(x1, x2+1):
 			var rnd = randi()
-			var model = rnd%inner_walls.size()
 			if y == 0:
-				outer_walls[model].add(corridor_width*(Vector3(x, 0, y-0.5)), PI)
+				outer_walls[rnd%outer_walls.size()].add(corridor_width*(Vector3(x, 0, y-0.5)), PI)
 			elif y == size_y:
-				outer_walls[model].add(corridor_width*(Vector3(x, 0, y-0.5)), 0)
+				outer_walls[rnd%outer_walls.size()].add(corridor_width*(Vector3(x, 0, y-0.5)), 0)
 			else:
-				inner_walls[model].add(corridor_width*(Vector3(x, 0, y-0.5)), ((rnd >> 8)&1)*PI)
-		if y > 0 and y < size_y-1:
+				inner_walls[rnd%inner_walls.size()].add(corridor_width*(Vector3(x, 0, y-0.5)), ((rnd >> 8)&1)*PI)
+		if y > 0 and y < size_y:
 			if x1 > 0:
 				pillars.add(corridor_width*(Vector3(x1-0.5, 0, y-0.5)), 0)
 			if x2 < size_x-1:
@@ -77,13 +78,12 @@ func generate_walls_mesh(generator, builder):
 		var y2 = generator.walls_y[i+2]
 		for y in range(y1, y2+1):
 			var rnd = randi()
-			var model = rnd%inner_walls.size()
 			if x == 0:
-				outer_walls[model].add(corridor_width*(Vector3(x-0.5, 0, y)), -0.5*PI)
+				outer_walls[rnd%outer_walls.size()].add(corridor_width*(Vector3(x-0.5, 0, y)), -0.5*PI)
 			elif x == size_x:
-				outer_walls[model].add(corridor_width*(Vector3(x-0.5, 0, y)), 0.5*PI)
+				outer_walls[rnd%outer_walls.size()].add(corridor_width*(Vector3(x-0.5, 0, y)), 0.5*PI)
 			else:
-				inner_walls[model].add(corridor_width*(Vector3(x-0.5, 0, y)), (0.5+((rnd >> 8)&1))*PI)
+				inner_walls[rnd%inner_walls.size()].add(corridor_width*(Vector3(x-0.5, 0, y)), (0.5+((rnd >> 8)&1))*PI)
 		if x > 0 and x < size_x:
 			if y1 > 0:
 				pillars.add(corridor_width*(Vector3(x-0.5, 0, y1-0.5)), 0)

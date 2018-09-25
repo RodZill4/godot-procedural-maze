@@ -24,7 +24,7 @@ params_billboard_mode = 0
 params_grow = false
 params_use_alpha_scissor = false
 albedo_color = Color( 1, 1, 1, 1 )
-metallic = 1.0
+metallic = 0.9
 metallic_specular = 0.5
 metallic_texture_channel = 0
 roughness = 0.0
@@ -50,5 +50,5 @@ uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
 distance_fade_enable = false
-_sections_unfolded = [ "Albedo", "Emission", "Metallic", "Parameters", "Roughness" ]
+_sections_unfolded = [ "Albedo", "Emission", "Metallic", "Roughness" ]
 
