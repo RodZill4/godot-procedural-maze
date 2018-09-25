@@ -43,3 +43,15 @@ func _physics_process(delta):
 		$Model.anim("Idle")
 	motion.x = h_motion.x
 	motion.z = h_motion.y
+
+func get_key(color):
+	var key = preload("res://test_procedural_maze/key_icon.tscn").instance()
+	key.position.x = 64*$Keys.get_child_count()
+	key.modulate = color
+	$Keys.add_child(key)
+
+func has_key(color):
+	for c in $Keys.get_children():
+		if c.modulate == color:
+			return true
+	return false

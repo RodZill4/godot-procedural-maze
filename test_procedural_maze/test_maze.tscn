@@ -24,7 +24,7 @@ extents = Vector3( 6.5605, 1, 6.45898 )
 
 extents = Vector3( 1.34623, 1, 1.30101 )
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=3]
 
 script/source = "extends Label
 
@@ -35,7 +35,7 @@ func _process(delta):
 	text = str(Performance.get_monitor(Performance.TIME_FPS))
 "
 
-[sub_resource type="Environment" id=5]
+[sub_resource type="Environment" id=4]
 
 background_mode = 1
 background_sky_custom_fov = 0.0
@@ -114,7 +114,7 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Ambient Light", "Background" ]
 
-[node name="Scene" type="Spatial" index="0"]
+[node name="Scene" type="Spatial"]
 
 _sections_unfolded = [ "Transform" ]
 
@@ -201,7 +201,7 @@ size_flags_vertical = 4
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = SubResource( 4 )
+script = SubResource( 3 )
 
 [node name="Pillar1" type="MeshInstance" parent="." index="4"]
 
@@ -273,6 +273,10 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="8"]
 
-environment = SubResource( 5 )
+environment = SubResource( 4 )
+
+[connection signal="body_entered" from="Maze/Key" to="Maze/Key" method="_on_Key_body_entered"]
+
+[connection signal="body_entered" from="Maze/Key2" to="Maze/Key2" method="_on_Key_body_entered"]
 
 

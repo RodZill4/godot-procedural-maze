@@ -8,7 +8,7 @@
 radius = 0.29108
 height = 1.08465
 
-[node name="Player" type="KinematicBody"]
+[node name="Player" type="KinematicBody" index="0"]
 
 input_ray_pickable = false
 input_capture_on_drag = false
@@ -57,5 +57,9 @@ omni_shadow_detail = 1
 
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="Keys" type="Node2D" parent="." index="3"]
+
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 

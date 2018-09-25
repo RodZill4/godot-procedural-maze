@@ -8,18 +8,18 @@ func instanciate_objects(objects):
 	for o in objects:
 		var object
 		if o.type == "loot":
-			if last_key != null or randi()%2 == 0:
+			if last_key != null or randi()%4 == 0:
 				object = preload("res://test_procedural_maze/chest.tscn").instance()
 			else:
 				object = preload("res://test_procedural_maze/key.tscn").instance()
 				object.set_color(key_color)
 				last_key = object
-		elif last_key != null and o.type == "door":
+		elif last_key != null and randi()%4 == 0 and o.type == "door":
 			object = preload("res://test_procedural_maze/door.tscn").instance()
 			object.set_color(key_color)
 			last_key = null
 			key_id += 1
-			key_color.h += 0.2
+			key_color.h += 0.1
 		else:
 			print(o)
 			continue
