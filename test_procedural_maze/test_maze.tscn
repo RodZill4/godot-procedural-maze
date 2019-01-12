@@ -114,7 +114,7 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Ambient Light", "Background" ]
 
-[node name="Scene" type="Spatial"]
+[node name="Scene" type="Spatial" index="0"]
 
 _sections_unfolded = [ "Transform" ]
 

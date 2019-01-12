@@ -3,6 +3,7 @@ extends KinematicBody
 export(float) var run_speed = 10.0
 
 var motion = Vector3(0, 0, 0)
+var previous_position = Vector3(0, 0, 0)
 
 func _ready():
 	pass
@@ -36,11 +37,12 @@ func _physics_process(delta):
 	var h_motion = Vector2(motion.x, motion.z)
 	h_motion.x = lerp(h_motion.x, direction.x, h_motion_influence)
 	h_motion.y = lerp(h_motion.y, direction.y, h_motion_influence)
-	if h_motion.length() > 1:
+	if (previous_position-translation).length()/delta > 1:
 		$Model.anim("Run")
 		rotation.y = 0.5*PI - h_motion.angle()
 	else:
 		$Model.anim("Idle")
+	previous_position = translation
 	motion.x = h_motion.x
 	motion.z = h_motion.y
 
