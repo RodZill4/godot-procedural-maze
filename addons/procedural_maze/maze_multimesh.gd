@@ -3,6 +3,7 @@ extends "res://addons/procedural_maze/maze.gd"
 
 export(Array) var wall_models = []
 export(Array) var outer_wall_models = []
+export(Mesh) var pillar_model = null
 
 class MultiMeshBuilder:
 	var mesh
@@ -46,7 +47,9 @@ func generate_walls_mesh(generator, builder):
 	# Create multi_mesh
 	var inner_walls = []
 	var outer_walls = []
-	var pillars = MultiMeshBuilder.new(load("res://test_procedural_maze/models/pillar.tres"))
+	var pillars = null
+	if pillar_model != null:
+		pillars = MultiMeshBuilder.new(pillar_model)
 	for m in wall_models:
 		inner_walls.append(MultiMeshBuilder.new(m))
 	for m in outer_wall_models:
@@ -67,7 +70,7 @@ func generate_walls_mesh(generator, builder):
 				outer_walls[rnd%outer_walls.size()].add(corridor_width*(Vector3(x, 0, y-0.5)), 0)
 			else:
 				inner_walls[rnd%inner_walls.size()].add(corridor_width*(Vector3(x, 0, y-0.5)), ((rnd >> 8)&1)*PI)
-		if y > 0 and y < size_y:
+		if pillars != null and y > 0 and y < size_y:
 			if x1 > 0:
 				pillars.add(corridor_width*(Vector3(x1-0.5, 0, y-0.5)), 0)
 			if x2 < size_x-1:
@@ -84,7 +87,7 @@ func generate_walls_mesh(generator, builder):
 				outer_walls[rnd%outer_walls.size()].add(corridor_width*(Vector3(x-0.5, 0, y)), 0.5*PI)
 			else:
 				inner_walls[rnd%inner_walls.size()].add(corridor_width*(Vector3(x-0.5, 0, y)), (0.5+((rnd >> 8)&1))*PI)
-		if x > 0 and x < size_x:
+		if pillars != null and x > 0 and x < size_x:
 			if y1 > 0:
 				pillars.add(corridor_width*(Vector3(x-0.5, 0, y1-0.5)), 0)
 			if y2 < size_y-1:
@@ -93,4 +96,5 @@ func generate_walls_mesh(generator, builder):
 		i.finalize(self)
 	for i in outer_walls:
 		i.finalize(self)
-	pillars.finalize(self, true)
+	if pillars != null:
+		pillars.finalize(self, true)

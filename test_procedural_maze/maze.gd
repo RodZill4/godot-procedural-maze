@@ -7,6 +7,7 @@ func instanciate_objects(objects):
 	var last_key = null
 	for o in objects:
 		var object
+		print(o)
 		if o.type == "loot":
 			if last_key != null or randi()%4 == 0:
 				object = preload("res://test_procedural_maze/chest.tscn").instance()
@@ -21,7 +22,6 @@ func instanciate_objects(objects):
 			key_id += 1
 			key_color.h += 0.1
 		else:
-			print(o)
 			continue
 		object.translation = corridor_width*Vector3(o.x, 0.0, o.y)
 		object.rotation.y = MazeGenerator.DIRECTIONS[o.direction].a
